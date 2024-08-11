@@ -7,7 +7,7 @@
 
 <div class="container mt-5 d-flex ">
     
-    <div class="container me-2">
+    <div class="container me-4">
         <table class="table table-custom mb-0 table-info text-center">
             <thead>
                 <tr>
@@ -15,7 +15,9 @@
                     <th>Apellido Paterno</th>
                     <th>Apellido Materno</th>
                     <th>Fecha de nacimiento</th>
-                    <th>Género</th>
+                    <th>Antecedentes</th>
+                    <th>Alergias</th>
+                    <th>Enfermedades crónicas</th>
                     <th>Ver Citas</th>
                     <th>Opciones</th>
                 </tr>
@@ -26,19 +28,21 @@
                     <td>Medina</td>
                     <td>Everardo</td>
                     <td>07/01/04</td>
-                    <td>Mujer</td>
+                    <td>Diabetes</td>
+                    <th>Penicilina</th>
+                    <th>Ninguna</th>
                     <td>
                         <a href="/mostrarCitas">Ir</a>
                     </td>
                     <td>
-                        <a href="">Editar</a>
+                        <a href="/editarPacientes">Editar</a>
                         <a href="">Eliminar</a>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <a href="/agregarPaciente" class="btn btn-success mt-4">Agregar Paciente</a>
+        <a href="/agregarPaciente" class="btn btn-primary mt-4" style="background-color: #0b6f9e; color: white;">Agregar Paciente</a>
     </div>
 
     <div class="card p-3 shadow-sm col-3" style="background-color: #b5e1ff;">
@@ -58,7 +62,7 @@
                 <input type="text" class="form-control" id="nombreExpediente" placeholder="">
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary" style="background-color: #0b6f9e; color: white;">Buscar</button>
+                <button type="submit" class="btn btn-primary mt-4" style="background-color: #0b6f9e; color: white;">Buscar</button>
             </div>
         </div>
     </div>

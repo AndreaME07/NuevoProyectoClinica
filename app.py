@@ -7,7 +7,7 @@ app = Flask(__name__, template_folder='template')
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'db_clinicamayo'
+app.config['MYSQL_DB'] = 'clinicaMayo'
 app.config['MYSQL_UNIX_SOCKET'] = '/opt/lampp/var/mysql/mysql.sock'  
 app.secret_key = 'mysecretkey'
 
@@ -21,7 +21,7 @@ def home():
 
 @app.route('/mostrarMedicos')
 def mostrarMedicos():
-    return render_template('vistas/consultarMedicos.html')
+    return render_template('vistas/mostrarMedicos.html')
 
 @app.route('/agregarMedico')
 def agregarMedico():
@@ -30,6 +30,7 @@ def agregarMedico():
 @app.route('/editarMedico')
 def editarMedico():
     return render_template('opciones/editarMedico.html')
+
 
 
 # Expedientes ----------------------------------------------------------------------------------
@@ -63,9 +64,9 @@ def exploracionPaciente():
 def diagnostico():
     return render_template('diagnostico.html') 
 
-@app.route('/editarPaciente')
-def editarPaciente():
-    return render_template('editarPaciente.html') 
+@app.route('/editarPacientes')
+def editarPacientes():
+    return render_template('opciones/editarPacientes.html') 
 
 @app.route('/menuUser')
 def menuUser():
