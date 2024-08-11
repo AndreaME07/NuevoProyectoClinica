@@ -1,0 +1,43 @@
+{% extends "plantilla.html" %}
+{% block content %}
+
+<div class="container mt-5 p-0">
+
+    <div class="card mt-5 mb-4 p-0 shadow-sm" style="max-width: 100%; margin: 0 auto;">
+        <div class="card-body p-0" style="background-color: #b5e1ff;">
+            <h5 class="card-title text-center mb-2">Listado de Médicos</h5>
+            <table class="table table-custom mb-0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Correo</th>
+                        <th>RFC</th>
+                        <th>Cedula</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-custom">
+                        <td>And</td>
+                        <td>Medina</td>
+                        <td>Everardo</td>
+                        <td>andy@ejemplo.com</td>
+                        <td>XXXOOWOWP1ANDY</td>
+                        <td>asdasd</td>
+                        <td>
+                            <a href="/editarMedico" class="">Editar</a>
+                            <a href="" class="text-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <a class="btn btn-info" href="/agregarMedico"> Agregar Medico</a>
+
+</div>
+
+{% endblock %}

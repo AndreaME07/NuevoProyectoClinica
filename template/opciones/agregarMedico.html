@@ -1,44 +1,52 @@
-{%extends "plantillaAdmin.html"%}
+{%extends "plantilla.html"%}
+
 {%block content%}
-<div class="form-container">
+
+
+
+<div class="container col-4 text-center ">
     <h2>Agregar datos del Médico</h2>
     <form action="" method="post">
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="nombre">Nombre:</label>
             <input type="text" class="form-control" id="nombre" name="txtNombre">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="nombre">Apellido Paterno:</label>
             <input type="text" class="form-control" id="nombre" name="txtApePaterno">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="nombre">Apellido Materno:</label>
             <input type="text" class="form-control" id="nombre" name="txtApeMaterno">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="rfc">RFC:</label>
             <input type="text" class="form-control" id="rfc" name="txtRFC">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="cedula">Cédula profesional:</label>
             <input type="text" class="form-control" id="cedula" name="txtCedula">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="correo">Correo:</label>
             <input type="email" class="form-control" id="correo" name="txtCorreo">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="contraseña">Contraseña:</label>
             <input type="password" class="form-control" id="contraseña" name="txtContrasena">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="rol">Rol:</label>
             <select class="form-control" id="rol" name="txtRol">
                 {%for roles in roles%}
                 <option value="" </option>
                 {%endfor%}
             </select>
-            <button type="submit" class="btn btn-info">Guardar datos</button>
+        </div>
+
+            <button type="submit" class="btn btn-info mt-3">Guardar datos</button>
+
     </form>
 </div>
+
 {%endblock%}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session, flash, url_for
+from flask import Flask, render_template, redirect, request, session, flash, url_for, sessions
 from flask_mysqldb import MySQL
 from functools import wraps
 
@@ -18,48 +18,46 @@ def home():
     return render_template('index.html')
 
 #RUTAS PARA LOS MÉDICOS ADMINISTRADORES--------------------------------------------------------------------
+
+@app.route('/mostrarMedicos')
+def mostrarMedicos():
+    return render_template('vistas/consultarMedicos.html')
+
 @app.route('/agregarMedico')
 def agregarMedico():
-    return render_template('agregarMedico.html')
-
-@app.route('/buscarMedico')
-def buscarMedico():
-    return render_template('buscarMedico.html')
+    return render_template('opciones/agregarMedico.html')
 
 @app.route('/editarMedico')
 def editarMedico():
-    return render_template('editarMedico.html')
+    return render_template('opciones/editarMedico.html')
 
-@app.route('/registroMedico')
-def registroMedico():
-    return render_template('registroMedico.html') 
-#se supone que esta ruta es para el inicio de la pagina y muestra los registros de los médicos que tiene cada admin
 
-@app.route('/menuAdmin')
-def menuAdmin():
-    return render_template('menuAdmin.html')
+# Expedientes ----------------------------------------------------------------------------------
 
-#RUTAS PARA MÉDICOS GENERALES----------------------------------------------------------------------------------
+@app.route('/mostrarPacientes')
+def mostrarPacientes():
+    return render_template('vistas/mostrarPacientes.html') 
 
-@app.route('/agregarPacientes')
-def agregarPacientes():
-    return render_template('agregarPaciente.html') 
+@app.route('/agregarCita')
+def agregarCita():
+    return render_template('vistas/agregarCita.html') 
 
-@app.route('/mostrarExpediente')
-def mostrarExpediente():
-    return render_template('mostrarExpediente.html') 
 
-@app.route('/citaPaciente')
-def citaPaciente():
-    return render_template('citaPaciente.html') 
+@app.route('/agregarPaciente')
+def agregarPaciente():
+    return render_template('opciones/agregarPaciente.html') 
+
 
 @app.route('/mostrarCitas')
 def mostrarCitas():
-    return render_template('mostrarCitas.html') 
+    return render_template('vistas/mostrarCitas.html') 
 
 @app.route('/exploracionPaciente')
 def exploracionPaciente():
-    return render_template('exploracionPaciente.html') 
+    return render_template('vistas/exploracionPaciente.html') 
+
+# ---------
+
 
 @app.route('/diagnostico')
 def diagnostico():

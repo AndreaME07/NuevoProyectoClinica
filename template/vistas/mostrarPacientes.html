@@ -1,0 +1,71 @@
+{% extends "plantilla.html" %}
+{% block content %}
+
+<div class="flex text-center mt-5">
+    <h1>Consultar Pacientes</h1>
+</div>
+
+<div class="container mt-5 d-flex ">
+    
+    <div class="container me-2">
+        <table class="table table-custom mb-0 table-info text-center">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Género</th>
+                    <th>Ver Citas</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-custom">
+                    <td>And</td>
+                    <td>Medina</td>
+                    <td>Everardo</td>
+                    <td>07/01/04</td>
+                    <td>Mujer</td>
+                    <td>
+                        <a href="/mostrarCitas">Ir</a>
+                    </td>
+                    <td>
+                        <a href="">Editar</a>
+                        <a href="">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="/agregarPaciente" class="btn btn-success mt-4">Agregar Paciente</a>
+    </div>
+
+    <div class="card p-3 shadow-sm col-3" style="background-color: #b5e1ff;">
+        <div class="card-body">
+            <div class="title mb-3">
+                <h2 class="text-center">Buscar expediente</h2>
+            </div>
+            <div class="form-group">
+
+                <label class="mt-2" for="nombreExpediente">Nombre :</label>
+                <input type="text" class="form-control" id="nombreExpediente" placeholder="">
+
+                <label class="mt-2" for="nombreExpediente">Apellido materno:</label>
+                <input type="text" class="form-control" id="nombreExpediente" placeholder="">
+
+                <label class="mt-2" for="nombreExpediente">Apellido paterno:</label>
+                <input type="text" class="form-control" id="nombreExpediente" placeholder="">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary" style="background-color: #0b6f9e; color: white;">Buscar</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+{% endblock %}
+
