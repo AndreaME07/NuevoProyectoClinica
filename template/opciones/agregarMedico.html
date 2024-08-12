@@ -6,7 +6,9 @@
 
 <div class="container col-4 text-center ">
     <h2>Agregar datos del Médico</h2>
-    <form action="" method="post">
+    <form action="/guardarMedico" method="post">
+        <!-- csrf -->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="form-group mt-2">
             <label for="nombre">Nombre:</label>
             <input type="text" class="form-control" id="nombre" name="txtNombre">
@@ -39,7 +41,7 @@
             <label for="rol">Rol:</label>
             <select class="form-control" id="rol" name="txtRol">
                 {%for roles in roles%}
-                <option value="" </option>
+                <option value="{{roles[0]}}">{{roles[1]}}</option>
                 {%endfor%}
             </select>
         </div>

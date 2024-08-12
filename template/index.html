@@ -32,8 +32,9 @@
                 <img src="{{ url_for('static', filename='logonegroclinica.jpg') }}" alt="ClinicaMayo" class="logo">
             </div>
             <div class="col-md-6">
-                <form class="formulario" action="" method="post">
+                <form class="formulario" action="/accesoLogin" method="post">
                     <h4 class="mb-4">Bienvenido, por favor ingrese sus datos</h4>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     {% with messages = get_flashed_messages(with_categories=true) %}
                         {% if messages %}
                         <div class="alert alert-warning alert-dismissible fade show alert alert-danger " role="alert">

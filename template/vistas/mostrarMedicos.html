@@ -2,7 +2,10 @@
 {% block content %}
 
 <div class="container mt-5 p-0">
-
+    <script>
+        var medicos = JSON.parse('{{ medico | tojson | safe }}');
+        console.log(medicos);
+    </script>
     <div class="card mt-5 mb-4 p-0 shadow-sm" style="max-width: 100%; margin: 0 auto;">
         <div class="card-body p-0" style="background-color: #b5e1ff;">
             <h5 class="card-title text-center mb-2">Listado de Médicos</h5>
@@ -15,29 +18,46 @@
                         <th>RFC</th>
                         <th>Cedula</th>
                         <th>Correo</th>
+                        <th>Rol</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for medico in medico %}
                     <tr class="table-custom">
-                        <td>And</td>
-                        <td>Medina</td>
-                        <td>Everardo</td>
-                        <td>XXXOOWOWP1ANDY</td>
-                        <td>asdasd</td>
-                        <td>andy@ejemplo.com</td>
+                        <td>{{ medico[1] }}</td>
+                        <td>{{ medico[2] }}</td>
+                        <td>{{ medico[3] }}</td>
+                        <td>{{ medico[4] }}</td>
+                        <td>{{ medico[5] }}</td>
+                        <td>{{ medico[6] }}</td>
+                        <td>{{ medico[9] }}</td>
                         <td>
-                            <a href="/editarMedico" class="">Editar</a>
-                            <a href="" class="text-danger">Eliminar</a>
+                            <a href="/editarMedico/{{medico[0]}}" class="">Editar</a>
+                            <button onclick="confirmarEliminacion(event,'{{medico[0]}}')">
+                                Borrar
+                            </button>
                         </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 
     <a class="btn btn-primary mt-4" style="background-color: #0b6f9e; color: white;" href="/agregarMedico"> Agregar Medico</a>
-
 </div>
-
+<script>
+    function confirmarEliminacion(event,id){
+        event.preventDefault();
+        var confirmar = confirm('¿Estás seguro de eliminar este usuario?');
+        if (confirmar){
+            var form = document.createElement('form');
+            form.action = '/eliminarMedico/'+id;
+            document.body.appendChild(form);
+            form.submit();
+        }
+    }
+</script>
 {% endblock %}
+

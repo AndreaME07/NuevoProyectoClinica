@@ -11,7 +11,14 @@ create table medicos(
     cedula varchar(50),
     correo varchar(50),
     pass varchar(50),
-    rol int
+    id_rol int
+
+    foreign key (rol) references roles(id) on delete cascade
+);
+
+create table roles(
+    id int primary key auto_increment,
+    nombre varchar(50)
 );
 
 create table pacientes (
@@ -52,3 +59,12 @@ create table citas (
 insert into medicos(nombres, apeP ,apeM ,RFC ,cedula ,correo , pass ,rol)
 values 
 ('María','Barrera','Everardo','asdjnasnjdad','sasds','maria@gmail.com','admin123',1);
+
+insert into roles(nombre)
+values 
+('admin');
+
+insert into roles(nombre)
+values 
+('medico');
+

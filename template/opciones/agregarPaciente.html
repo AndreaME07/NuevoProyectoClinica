@@ -5,7 +5,10 @@
             <h2>Guardar datos del paciente</h2>
 
         </div>
-        <form action="" method="post">
+        <form action="/guardarPaciente" method="POST">
+            <!-- csrf -->
+             
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
             <div class="form-group mt-2">
                 <label for="nombre">Nombre </label>
                 <input type="text" class="form-control" id="nombre" name="txtNombre">
@@ -23,15 +26,15 @@
                 <input type="date" class="form-control" id="fecha" name="txtFecha">
             </div>
             <div class="form-floating w-100 mt-4">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="txtAnte"></textarea>
                 <label for="floatingTextarea2">Antecedentes</label>
             </div>
             <div class="form-floating w-100 mt-4">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="txtAle"></textarea>
                 <label for="floatingTextarea2">Alergias</label>
             </div>
             <div class="form-floating w-100 mt-4">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="txtEC"></textarea>
                 <label for="floatingTextarea2">Enfermedades Cronicas</label>
             </div>
             <div class="text-center">

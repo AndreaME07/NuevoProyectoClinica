@@ -2,11 +2,14 @@
 {% block content %}
 
 <div class="d-flex mt-5">
-
+    <script>
+        var cita = JSON.parse('{{ citas | tojson | safe }}');
+        console.log(cita);
+    </script>
     <div class="container col-4">
 
         <h4>Citas del paciente:</h4>
-
+        {%if citas%}
         <table class="table mt-3">
             <thead>
                 <tr>
@@ -15,50 +18,60 @@
                 </tr>
             </thead>
             <tbody>
+                {%for citas in citas%}
                 <tr>
-                    <td>01/07/2024</td>
+                    <td>{{citas[1]}}</td>
                     <td>
-                        <a href="/exploracionPaciente" class="btn text-success">Ver Cita</a>
-
+                        <a href="/exploracionPaciente/{{citas[0]}}" class="btn text-success">Ver Cita</a>
                     </td>
                 </tr>
+                {%endfor%}
             </tbody>
         </table>
-        
+        {%else%}
+        <div class="alert alert-warning" role="alert">
+            No hay citas registradas
+        </div>
+        {%endif%}
+
     </div>
 
     <div class="container col-3">
         <div class="title text-center mb-8">
             <h2>Citas del paciente</h2>
         </div>
+        <form action="/buscarCita" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <label for="nombrePaciente">Nombre:</label>
+                <input type="text" name="txtNombre" class="form-control" id="nombrePaciente" placeholder="Nombre del paciente">
+            </div>
 
-        <div class="form-group">
-            <label for="nombrePaciente">Nombre:</label>
-            <input type="text" class="form-control" id="nombrePaciente" placeholder="Nombre del paciente">
-        </div>
+            <div class="form-group">
+                <label for="nombrePaciente">Apellido paterno:</label>
+                <input type="text" name="txtApeP" class="form-control" id="nombrePaciente" placeholder="Nombre del paciente">
+            </div>
 
-        <div class="form-group">
-            <label for="nombrePaciente">Apellido paterno:</label>
-            <input type="text" class="form-control" id="nombrePaciente" placeholder="Nombre del paciente">
-        </div>
+            <div class="form-group">
+                <label for="nombrePaciente">Apellido materno:</label>
+                <input type="text" name="txtApeM" class="form-control" id="nombrePaciente" placeholder="Nombre del paciente">
+            </div>
 
-        <div class="form-group">
-            <label for="nombrePaciente">Apellido materno:</label>
-            <input type="text" class="form-control" id="nombrePaciente" placeholder="Nombre del paciente">
-        </div>
-        
-        <div class="form-group">
-            <label for="fechaCita">Fecha de cita</label>
-            <input type="date" class="form-control" id="fechaCita">
-        </div>
-        <div class="col-md-12 mt-4">
-            <div class="d-flex justify-content-end">
-                <div class="text-center mt-6 mb-1">
-                    <a class="btn btn-primary mt-4" style="background-color: #0b6f9e; color: white;" href="/agregarCita"> Agregar Cita</a>
-                    <button type="submit" class="btn btn-primary mt-4" style="background-color: #0b6f9e; color: white;" >Buscar paciente</button>
+            <div class="form-group">
+                <label for="fechaCita">Fecha de cita</label>
+                <input type="date" class="form-control" id="fechaCita" name="txtDate">
+            </div>
+            <div class="col-md-12 mt-4">
+                <div class="d-flex justify-content-end">
+                    <div class="text-center mt-6 mb-1">
+                        <a class="btn btn-primary mt-4" style="background-color: #0b6f9e; color: white;"
+                            href="/agregarCita/{{paciente[0]}}"> Agregar Cita</a>
+                        <button type="submit" class="btn btn-primary mt-4"
+                            style="background-color: #0b6f9e; color: white;">Buscar paciente</button>
+                    </div>
                 </div>
             </div>
-        </div>  
+        </form>
     </div>
 </div>
 
