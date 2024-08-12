@@ -33,7 +33,6 @@ def roles_required(allowed_roles):
         return decorated_function
     return decorator
 
-
 app = Flask(__name__, template_folder='template')
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -64,7 +63,7 @@ def accesoLogin():
             print(f"User found: {logged_user.RFC}")  # Debug print
             if User.check_password(logged_user.contrasena, password):
                 login_user(logged_user)
-                print(f"Logged in user: {logged_user.id}, Role: {logged_user.id_rol}")
+                session['id_rol'] = logged_user.id_rol
                 if logged_user.id_rol == 1:
                     print("Redirecting to mostrarMedicos")  # Debug print
                     return redirect(url_for('mostrarMedicos'))
