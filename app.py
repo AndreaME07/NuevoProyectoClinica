@@ -242,7 +242,6 @@ def guardarCita():
         peso = request.form['txtPeso']
         altura = request.form['txtAlt']
         temperatura = request.form['txtTemp']
-        bpm = request.form['txtLat']
         oxigenacion = request.form['txtSat']
         glucosa = request.form['txtGlu']
         edad = request.form['txtEdad']
@@ -253,8 +252,8 @@ def guardarCita():
         id_paciente = request.form['txtPaciente']
         
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO citas(fecha, peso, altura, temperatura, bpm, oxigenacion, glucosa, edad, sintomas, diagnostico, tratamiento, estudios, id_paciente) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", 
-                    (fecha, peso, altura, temperatura, bpm, oxigenacion, glucosa, edad, sintomas, diagnostico, tratamiento, estudios, id_paciente))
+        cur.execute("INSERT INTO citas(fecha, peso, altura, temperatura, oxigenacion, glucosa, edad, sintomas, diagnostico, tratamiento, estudios, id_paciente) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", 
+                    (fecha, peso, altura, temperatura, oxigenacion, glucosa, edad, sintomas, diagnostico, tratamiento, estudios, id_paciente))
         mysql.connection.commit()
         cur.close()
         flash('Cita agregada correctamente')

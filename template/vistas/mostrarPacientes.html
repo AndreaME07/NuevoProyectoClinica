@@ -11,9 +11,9 @@
 
 <div class="container mt-5 d-flex ">
 
-    <div class="container me-4">
+    <div class="container me-2">
         {%if session['id_rol']==2%}
-        <table class="table table-custom mb-0 table-info text-center">
+        <table class="table table-custom mb-0 table-info text-center"  >
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -28,26 +28,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-custom">
-                    <td>And</td>
-                    <td>Medina</td>
-                    <td>Everardo</td>
-                    <td>07/01/04</td>
-                    <td>Diabetes</td>
-                    <th>Penicilina</th>
-                    <th>Ninguna</th>
+                {%for paciente in paciente%}
+                <tr class="table-custom" >
+                    <td>{{paciente[1]}}</td>
+                    <td>{{paciente[2]}}</td>
+                    <td>{{paciente[3]}}</td>
+                    <td>{{paciente[4]}}</td>
+                    <td>{{paciente[5]}}</td>
+                    <td>{{paciente[6]}}</td>
+                    <td>{{paciente[7]}}</td>
                     <td>
-                        <a href="/mostrarCitas">Ir</a>
+                        <a href="/mostrarCitas/{{paciente[0]}}">Ir</a>
                     </td>
                     <td>
-                        <a href="/editarPacientes">Editar</a>
-                        <a href="">Eliminar</a>
+                        <a href="/editarPacientes/{{paciente[0]}}">Editar</a>
+                        <a href="/eliminarPaciente/{{paciente[0]}}">Eliminar</a>
                     </td>
                 </tr>
+                {%endfor%}
             </tbody>
         </table>
         {%endif%}
-        {%if session['id_rol']==1%}
+ <!--   {%if session['id_rol']==1%}
         <table class="table table-custom mb-0 table-info text-center">
             <thead>
                 <tr>
@@ -87,7 +89,7 @@
             </tbody>
         </table>
         {%endif%}
-
+    -->
 
         <a href="/agregarPaciente" class="btn btn-primary mt-4" style="background-color: #0b6f9e; color: white;">Agregar
             Paciente</a>

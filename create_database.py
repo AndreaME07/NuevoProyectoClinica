@@ -56,7 +56,6 @@ def execute_queries():
             peso FLOAT,
             altura FLOAT,
             temperatura FLOAT,
-            bpm INT,
             oxigenacion INT,
             glucosa FLOAT,
             edad INT,
