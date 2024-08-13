@@ -4,6 +4,10 @@ from functools import wraps
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash
+from weasyprint import HTML, CSS
+from flask import send_file
+import os 
+
 # Modelos
 from models.ModelUsers import ModelUser
 
@@ -237,7 +241,9 @@ def agregarCita(id):
 @login_required
 @roles_required(['Administrador', 'Médico'])
 def guardarCita():
-    if request.method == 'POST' and request.form['txtDate'] and request.form['txtPeso'] and request.form['txtAlt'] and request.form['txtTemp'] and request.form['txtLat'] and request.form['txtSat'] and request.form['txtEdad'] and request.form['txtSint'] and request.form['txtEst'] and request.form['txtDiag'] and request.form['txtTrat'] and request.form['txtGlu']:
+    id_paciente = request.form.get('txtPaciente') 
+    
+    if request.method == 'POST' and all(request.form.get(field) for field in ['txtDate', 'txtPeso', 'txtAlt', 'txtTemp', 'txtLat', 'txtSat', 'txtEdad', 'txtSint', 'txtEst', 'txtDiag', 'txtTrat', 'txtGlu', 'txtPaciente']):
         fecha = request.form['txtDate']
         peso = request.form['txtPeso']
         altura = request.form['txtAlt']
@@ -249,7 +255,6 @@ def guardarCita():
         diagnostico = request.form['txtDiag']
         tratamiento = request.form['txtTrat']
         estudios = request.form['txtEst']
-        id_paciente = request.form['txtPaciente']
         
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO citas(fecha, peso, altura, temperatura, oxigenacion, glucosa, edad, sintomas, diagnostico, tratamiento, estudios, id_paciente) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", 
@@ -257,6 +262,9 @@ def guardarCita():
         mysql.connection.commit()
         cur.close()
         flash('Cita agregada correctamente')
+        return redirect(url_for('agregarCita', id=id_paciente))
+    else:
+        flash('Error al agregar la cita. Por favor, asegúrate de llenar todos los campos.')
         return redirect(url_for('agregarCita', id=id_paciente))
     
 
@@ -348,13 +356,39 @@ def buscarCita():
         flash(f'Error en la búsqueda: {str(e)}')
         return redirect(url_for('buscarPaciente'))
 
-@app.route('/exploracionPaciente/<id>')
+@app.route('/exploracionPaciente/')
 @login_required
-@roles_required(['Administrador','Medico'])
-def exploracionPaciente(id):
+@roles_required(['Administrador', 'Médico'])
+def exploracionPaciente():
     return render_template('vistas/exploracionPaciente.html') 
 
 # ---------
+@app.route('/crearCita/<id>')
+@login_required
+@roles_required(['Administrador', 'Médico'])
+def crearCita(id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT citas.*, pacientes.* FROM citas JOIN pacientes ON citas.id_paciente = pacientes.id WHERE citas.id=%s", (id,))
+    cita = cur.fetchone()
+
+    print(cita)
+    os.makedirs('recetas', exist_ok=True)
+
+    html_content = render_template('receta.html', cita=cita)
+
+    pdf_path = f"recetas/receta_{cita[0]}_{cita[1]}.pdf"
+
+    pdf = HTML(string=html_content).write_pdf()
+
+    with open(pdf_path, 'wb') as f:
+        f.write(pdf)
+    
+    flash('Receta generada correctamente')
+    
+    return send_file(pdf_path, as_attachment=True)
+
+
+
 
 
 @app.route('/diagnostico')

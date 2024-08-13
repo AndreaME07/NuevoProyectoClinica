@@ -12,7 +12,7 @@
                 </li>
                 {% endif %}
                 
-                {%if session['id_rol'] ==2%}
+                {%if session['id_rol'] ==2 or session['id_rol']==1%}
                 <li class="nav-item">
                     <a class="nav-link" href="/mostrarPacientes">Consultar Pacientes</a>
                 </li>
