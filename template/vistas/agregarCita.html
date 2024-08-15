@@ -1,0 +1,100 @@
+{%extends 'plantilla.html'%}
+
+{%block content%}
+
+<div class="container mt-5 col-7">
+
+    <div class="text-center">
+        <span class="h2">Agregar Cita</span>
+    </div>
+    <form action="/guardarCita" method="POST">
+        <!-- csrf -->
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <div class="d-flex justify-content-between mt-5">
+            <div class="col-6 ms-2">
+                <label for="edadInput" class="form-label">Glucosa:</label>
+                <input type="text" name="txtGlu" class="form-control" id="edadInput" placeholder="Ingrese edad">
+            </div>
+            <div class="col-6 ms-2">
+                <label for="fechaInput" class="form-label">Fecha:</label>
+                <input type="date" name="txtDate" class="form-control" id="fechaInput" placeholder="Ingrese fecha de la consulta">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <div class="col-6">
+                <label for="pesoInput" class="form-label">Peso:</label>
+                <input type="text" name="txtPeso" class="form-control" id="pesoInput" placeholder="Ingrese peso en kg">
+            </div>
+
+            <div class="col-6 ms-2">
+                <label for="alturaInput" class="form-label">Altura:</label>
+                <input type="text" class="form-control" id="alturaInput" name="txtAlt" placeholder="Ingrese altura en cm">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <div class="col-6">
+                <label for="temperaturaInput" class="form-label">Temperatura:</label>
+                <input type="text" name="txtTemp" class="form-control" id="temperaturaInput" placeholder="Ingrese temperatura en C°">
+            </div>
+
+            <div class="col-6 ms-2">
+                <label for="latidosInput" class="form-label">Latidos por minuto:</label>
+                <input type="text" name="txtLat" class="form-control" id="latidosInput" placeholder="Ingrese latidos por minuto">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <div class="col-6">
+                <label for="saturacionInput" class="form-label">Saturación de oxígeno:</label>
+                <input type="text" class="form-control" id="saturacionInput" name="txtSat"
+                    placeholder="Ingrese saturación de oxígeno">
+            </div>
+
+            <div class="col-6 ms-2">
+                <label for="edadInput" class="form-label">Edad:</label>
+                <input type="text" name="txtEdad" class="form-control" id="edadInput" placeholder="Ingrese edad">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-3">
+            <div class="form-floating col-6 ">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                    style="height: 100px" name="txtSint"></textarea>
+                <label for="floatingTextarea2">Sintomas</label>
+            </div>
+
+            <div class="form-floating col-6 ms-2">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                    style="height: 100px" name="txtEst"></textarea>
+                <label for="floatingTextarea2">Estudios</label>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-3">
+            <div class="form-floating col-6">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                    style="height: 100px" name="txtDiag"></textarea>
+                <label for="floatingTextarea2">Diagnosico</label>
+            </div>
+
+            <div class="form-floating col-6 ms-2">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                    style="height: 100px" name="txtTrat"></textarea>
+                <label for="floatingTextarea2">Tratamiento</label>
+            </div>
+        </div>
+        <input type="text" name="txtPaciente" value="{{paciente[0]}}" hidden id="">
+        <div class="d-flex justify-content-center mt-4">
+
+            <button type="submit" class="btn btn-primary btn-sm mx-7" style="background-color: #0b6f9e;">Guardar
+                datos</button>
+
+        </div>
+    </form>
+</div>
+</div>
+
+
+{%endblock%}

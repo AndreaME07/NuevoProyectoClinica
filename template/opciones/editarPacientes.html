@@ -1,0 +1,50 @@
+{%extends 'plantilla.html'%}
+{%block content%}
+<script>
+    var paciente = JSON.parse('{{paciente | tojson | safe}}');
+    console.log(paciente);
+</script>
+    <div class="container col-5 mt-5">
+        <div class="text-center">
+            <h2>Guardar datos del paciente</h2>
+
+        </div>
+        <form action="/actualizarPaciente/{{paciente[0]}}" method="POST">
+            <!-- csrf -->
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <div class="form-group mt-2">
+                <label for="nombre">Nombre </label>
+                <input type="text" class="form-control" id="nombre" name="txtNombre" value="{{paciente[1]}}">
+            </div>
+            <div class="form-group mt-2">
+                <label for="apellidoP">Apellido Paterno:</label>
+                <input type="text" class="form-control" id="apellidoP" value="{{paciente[2]}}" name="txtApePaterno">
+            </div>
+            <div class="form-group mt-2">
+                <label for="apellidoM">Apellido Materno:</label>
+                <input type="text" value="{{paciente[3]}}" class="form-control" id="apellidoM" name="txtApeMaterno">
+            </div>
+            <div class="form-group mt-2">
+                <label for="fecha">Fecha de nacimiento:</label>
+                <input type="date" value="{{paciente[4]}}" class="form-control" id="fecha"  name="txtFecha">
+            </div>
+            <div class="form-floating w-100 mt-4">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="txtAnte">{{paciente[5]}}</textarea>
+                <label for="floatingTextarea2">Antecedentes</label>
+            </div>
+            <div class="form-floating w-100 mt-4">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="txtAle">{{paciente[6]}}</textarea>
+                <label for="floatingTextarea2">Alergias</label>
+            </div>
+            <div class="form-floating w-100 mt-4">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="txtEC">{{paciente[7]}}</textarea>
+                <label for="floatingTextarea2">Enfermedades Cronicas</label>
+            </div>
+            <div class="text-center">
+
+                <button type="submit" class="btn btn-primary mt-4" style="background-color: #0b6f9e; color: white;">Actualizar paciente</button>
+
+            </div>
+        </form>
+    </div>
+{%endblock%}

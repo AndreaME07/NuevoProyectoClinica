@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        header { text-align: center; margin-bottom: 50px; }
+        footer { text-align: center; position: fixed; bottom: 0; width: 100%; font-size: 12px; }
+        h1 { font-size: 24px; text-decoration: underline; }
+        .section { margin-bottom: 30px; }
+        .section-title { font-weight: bold; text-decoration: underline; }
+        .section-content { margin-left: 20px; }
+    </style>
+    <title>Receta Médica</title>
+</head>
+<body>
+    <header>
+        <h1>Receta Médica</h1>
+        <p><strong>Fecha:</strong> {{ cita[1] }}</p>
+    </header>
+
+    <div class="section">
+        <p class="section-title">Paciente:</p>
+        <div class="section-content">
+            <p>Nombre: {{ cita[16]}} {{cita[17]}} {{cita[18]}}</p>
+            <p>Edad: {{ cita[8] }} años</p>
+        </div>
+    </div>
+    <div class="section">
+        <p class="section-title">Síntomas:</p>
+        <div class="section-content">
+            <p>{{ cita[9] }}</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <p class="section-title">Diagnóstico:</p>
+        <div class="section-content">
+            <p>{{ cita[10] }}</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <p class="section-title">Tratamiento:</p>
+        <div class="section-content">
+            <p>{{ cita[11] }}</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <p class="section-title">Estudios Recomendados:</p>
+        <div class="section-content">
+            <p>{{ cita[12]}}</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Firma del Médico: ______________________</p>
+        <p>Clínica ClinicaMayo, Dirección, Teléfono</p>
+    </footer>
+</body>
+</html>
